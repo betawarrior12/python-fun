@@ -1,4 +1,4 @@
-import curses 
+import curses
 from random import randint
 
 #constants
@@ -33,7 +33,7 @@ ESC = 27
 key = curses.KEY_RIGHT
 
 while key != ESC:
-    win.addstr(0, 2, 'Score ' + str(score) + ' ')
+    win.addstr(0, 2, f'Score {str(score)} ')
     win.timeout(150 - (len(snake)) // 5 + len(snake)//10 % 120) # increase speed
 
     prev_key = key
@@ -70,7 +70,7 @@ while key != ESC:
         # eat the food
         score += 1
         food = ()
-        while food == ():
+        while not food:
             food = (randint(1,WINDOW_HEIGHT-2), randint(1,WINDOW_WIDTH -2))
             if food in snake:
                 food = ()

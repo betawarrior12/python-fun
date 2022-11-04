@@ -8,9 +8,9 @@ class NotionClient:
         self.database_id = database_id
 
         self.headers = {
-            "Authorization": "Bearer " + token,
+            "Authorization": f"Bearer {token}",
             "Content-Type": "application/json",
-            "Notion-Version": "2021-08-16"
+            "Notion-Version": "2021-08-16",
         }
 
     # read, update

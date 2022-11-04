@@ -35,9 +35,9 @@ def download_images():
     n_images = int(input('How many images do you want? '))
 
     print('Start searching...')
-    
+
     # get url query string
-    searchurl = GOOGLE_IMAGE + 'q=' + data
+    searchurl = f'{GOOGLE_IMAGE}q={data}'
     print(searchurl)
 
     # request url, without usr_agent the permission gets denied
@@ -47,7 +47,7 @@ def download_images():
     # find all divs where class='rg_meta'
     soup = BeautifulSoup(html, 'html.parser')
     results = soup.findAll('div', {'class': 'rg_meta'}, limit=n_images)
-    
+
     # extract the link from the div tag
     imagelinks= []
     for re in results:
@@ -63,8 +63,8 @@ def download_images():
     for i, imagelink in enumerate(imagelinks):
         # open image link and save as file
         response = requests.get(imagelink)
-        
-        imagename = SAVE_FOLDER + '/' + data + str(i+1) + '.jpg'
+
+        imagename = f'{SAVE_FOLDER}/{data}{str(i + 1)}.jpg'
         with open(imagename, 'wb') as file:
             file.write(response.content)
 
